@@ -58,7 +58,7 @@ python3 linked_list.py
 ## Running All Tests
 
 ```bash
-python3 test_assignment.py
+python3 test.py
 ```
 
 ## Main Findings
