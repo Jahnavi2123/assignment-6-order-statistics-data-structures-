@@ -134,16 +134,6 @@ The timing differences were relatively small because the tested input sizes were
 
 Overall, the results show the practical trade-off between the two algorithms. Randomized Quickselect often has lower overhead and can be faster in normal use, but its theoretical worst case remains \(O(n^2)\). Median of Medians performs extra work and is not guaranteed to be the fastest in a benchmark, but it provides the stronger guarantee of \(O(n)\) running time even for intentionally difficult input arrangements. The benchmark therefore supports the idea that deterministic selection is valuable when worst-case predictability matters, while randomized selection is often attractive when simpler implementation and strong expected performance are the main priorities.
 
-## Discussion of Empirical Results
-
-On random inputs, Randomized Quickselect will often be faster because it chooses a pivot directly and does not perform the grouping work required by Median of Medians. The deterministic algorithm performs extra operations to obtain its worst-case guarantee, and this overhead is visible even when the randomized pivots happen to be good.
-
-Sorted and reverse-sorted data should not create a systematic problem for either implementation. Median of Medians does not rely on the original ordering, while Randomized Quickselect chooses pivots independently of that order. This differs from deterministic first-pivot Quickselect, which could degrade badly on ordered input.
-
-Duplicate-heavy input should perform well because both implementations group all values equal to the pivot. When the pivot is one of the common repeated values, a large portion of the input can be eliminated in one step.
-
-Small timing differences may not perfectly match the theoretical analysis. Python function-call overhead, list creation, random-number generation, memory allocation, and background system activity can influence short benchmark runs. The main theoretical difference is therefore not that Median of Medians must always be faster, but that it provides a stronger worst-case guarantee.
-
 # Part 2: Elementary Data Structures
 
 ## Dynamic Array
